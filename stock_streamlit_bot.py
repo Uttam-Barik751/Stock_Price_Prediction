@@ -9,19 +9,19 @@ st.title("📈 Stock Price Prediction Bot")
 
 st.subheader("Enter a stock ticker and get a prediction for the next closing price.")
 
-# User input
+
 ticker = st.text_input("Enter Stock Ticker (e.g. AAPL, TSLA, GOOG):", "AAPL")
 
 if st.button("Predict"):
     st.write(f"Fetching data for **{ticker.upper()}**...")
 
-    # Download data
+
     data = yf.download(ticker, period="60d")
     
     if data.empty:
         st.error("Failed to load data. Please check the ticker symbol.")
     else:
-        # Show recent data chart
+        
         st.subheader("Recent Closing Prices")
         st.line_chart(data['Close'])
 
@@ -40,12 +40,12 @@ if st.button("Predict"):
 
         st.success(f"Predicted next closing price: ${predicted_price:.2f}")
 
-        # Optional: Age just for fun :)
+       
         age = st.slider("Select your age", 1, 100, 25)
         st.write("Your age is:", age)
 
         if st.checkbox("Show secret tip"):
             st.info("Tip: Never trade based on bots. Use them to learn, not to earn.")
 
-# Footer
+
 st.caption("Built with computer by Streamlit")
